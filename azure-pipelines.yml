@@ -15,8 +15,7 @@ steps:
     mavenPomFile: 'demo/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
-    jdkDirectory: 'C:\Program Files\Java\jdk-21' 
-    jdkVersionOption: '1.21'
+    jdkVersionOption: '21'  # Changed to modern version format
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
