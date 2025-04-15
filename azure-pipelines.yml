@@ -10,13 +10,19 @@ pool:
   name: 'model'
 
 steps:
+- powershell: |
+    Write-Host "Java installations:"
+    Get-ChildItem 'C:\Program Files\Java' -Recurse -Directory
+    Write-Host "System PATH:"
+    $env:PATH -split ';'
+  displayName: 'Diagnose Java and PATH'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'demo/pom.xml'
     mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '21'  # Changed to modern version format
-    jdkArchitectureOption: 'x64'
+    javaHomeOption: 'Path'
+    jdkDirectory: 'C:\Program Files\Java\jdk-21'  # Confirm this exact path exists
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'compile'
